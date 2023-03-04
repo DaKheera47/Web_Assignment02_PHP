@@ -1,23 +1,11 @@
 <?php
-// db connection
-$host = "localhost";
-$user = "ssarfaraz";
-$pass = "xUCeLzDv";
-$db = "ssarfaraz";
-$conn = mysqli_connect($host, $user, $pass, $db);
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+$tab_title = "Welcome to UCLan Student Shop - Home Page";
+require_once "../components/pageTop.component.php";
+require_once("../components/connection.component.php");
 
 $q = "SELECT * FROM tbl_products ORDER BY product_type";
 $res = mysqli_query($conn, $q);
 
-?>
-
-<?php
-$tab_title = "Welcome to UCLan Student Shop - Home Page";
-require_once "../components/pageTop.component.php";
 ?>
 
 <h1 class="heading mt-8 mb-4">
