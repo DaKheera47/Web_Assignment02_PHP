@@ -1,0 +1,10 @@
+/* npx tailwindcss -i ./style.css -o ./output.css --watch --minify */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .link {
+        @apply text-uclan-yellow hover:underline;
+    }
+}
