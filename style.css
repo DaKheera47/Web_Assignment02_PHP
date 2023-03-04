@@ -7,4 +7,7 @@
     .link {
         @apply text-uclan-yellow hover:underline;
     }
+    .heading {
+        @apply text-3xl text-uclan-blue dark:text-uclan-yellow font-bold capitalize;
+    }
 }

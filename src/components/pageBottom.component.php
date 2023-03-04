@@ -1,8 +1,7 @@
-<!-- footer -->
-<?php
-echo '
-<footer class="bg-uclan-blue text-white">
-    <div class="grid grid-cols-3 gap-8 px-6 py-16 max-w-7xl mx-auto">
+</main>
+
+<footer class="bg-uclan-blue dark:bg-gray-800 text-white">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 py-16 max-w-7xl mx-auto">
         <div>
             <h2 class="mb-6 text-lg font-semibold uppercase">
                 Navigation
@@ -19,11 +18,12 @@ echo '
                 </li>
             </ul>
         </div>
+
         <div>
             <h2 class="mb-6 text-lg font-semibold uppercase">
                 Contact
             </h2>
-            <ul class="">
+            <ul>
                 <li class="mb-4">
                     Email:
                     <a href="mailto:suinformation@uclan.ac.uk" class="link">suinformation@uclan.ac.uk</a>
@@ -49,8 +49,6 @@ echo '
         </div>
     </div>
 </footer>
-';
-?>
 </body>
 
 </html>

@@ -4,7 +4,13 @@
 
 module.exports = {
     // content: ["./*.php", "./*.html", "./src/**/*.php", "./src/**/*.component.php"],
-    content: ["./*.php", "./*.html", "./src/**/*.php", "./src/**/*.component.php"],
+    content: [
+        "./*.php",
+        "./*.html",
+        "./src/**/*.php",
+        "./src/**/*.component.php",
+    ],
+    darkMode: "class", // or 'media' or 'class'
     theme: {
         extend: {
             colors: {
