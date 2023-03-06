@@ -3,7 +3,7 @@
 function createCard($id, $title, $price, $image, $desc, $type)
 {
     echo '
-<div data-selector="' . $type . '" id=' . $id . ' class="productCard w-full max-w-sm bg-white dark:bg-gray-700 border dark:border-none border-gray-200 rounded-lg shadow">
+<div data-selector="' . $type . '" id=' . $id . ' class="productCard w-full max-w-sm bg-white dark:bg-gray-800 border dark:border-none border-gray-200 rounded-lg shadow">
     <a href="#">
         <img class="p-8 rounded-t-lg" src="/~ssarfaraz/public/' . $image . '" alt="product image" />
     </a>

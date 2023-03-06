@@ -4,6 +4,13 @@ require_once "../components/pageTop.component.php";
 ?>
 
 <div class="mt-10 children:my-3">
+    <?php
+    if (isset($_SESSION["isLoggedIn"]) && $_SESSION["isLoggedIn"] == true && isset($_SESSION["user_full_name"])) { ?>
+        <div class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
+            Welcome back, <span class="text-uclan-red dark:text-uclan-yellow"> <?php echo $_SESSION["user_full_name"] ?></span>
+        </div>
+    <?php } ?>
+
     <h1 class="heading mb-4">
         Where opportunity creates success
     </h1>
@@ -46,10 +53,11 @@ require_once "../components/pageTop.component.php";
 
         while ($row = mysqli_fetch_array($res)) {
             echo '
-<div class="p-4 mb-4 text-blue-800 border border-blue-300 rounded-lg dark:bg-slate-700 bg-blue-50 dark:text-blue-400 dark:border-blue-800">
+<div class="p-4 mb-4 text-blue-800 border border-blue-300 rounded-lg dark:bg-gray-800 bg-blue-50 dark:text-blue-400 dark:border-blue-800">
     <h3 class="text-lg font-medium capitalize">' . $row["offer_title"] . '</h3>
     <span class="my-2 text-sm dark:text-white">' . $row["offer_dec"] . '</span>
-</div>';
+</div>
+';
         }
         ?>
     </div>

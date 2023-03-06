@@ -11,3 +11,7 @@
         @apply text-3xl text-uclan-blue dark:text-uclan-yellow font-bold capitalize;
     }
 }
+
+body {
+    @apply overflow-x-hidden;
+}

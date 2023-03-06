@@ -9,24 +9,24 @@ $res = mysqli_query($conn, $q);
 ?>
 
 <h1 class="heading mt-8 mb-4">
-    Products Page!
+    You can view all our available products here
 </h1>
 
 <div class="my-4">
-    <div class="inline-flex rounded-md shadow-sm" role="group">
-        <button onclick="filterProducts('All')" class="dark:bg-gray-700 dark:text-white dark:hover:bg-gray-900 inline-flex items-center px-4 lg:px-8 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:outline-none dark:border-none">
+    <div class="sm:inline-flex grid grid-cols-2 grid-rows-2 justify-center items-center gap-2 sm:gap-0 flex-wrap sm:flex-nowrap rounded-md shadow-sm">
+        <button onclick="filterProducts('All')" class="w-full text-center sm:text-left whitespace-nowrap dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 inline-flex items-center px-4 lg:px-8 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-uclan-yellow focus:z-10 focus:ring-2 focus:ring-uclan-yellow focus:text-uclan-yellow dark:outline-none dark:border-none">
             Display All
         </button>
 
-        <button onclick="filterProducts('UCLan Logo Jumper')" class="dark:bg-gray-700 dark:text-white dark:hover:bg-gray-900 inline-flex items-center px-4 lg:px-8 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:outline-none dark:border-none">
+        <button onclick="filterProducts('UCLan Logo Jumper')" class="w-full text-center sm:text-left whitespace-nowrap dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 inline-flex items-center px-4 lg:px-8 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 hover:text-uclan-yellow focus:z-10 focus:ring-2 focus:ring-uclan-yellow focus:text-uclan-yellow dark:outline-none dark:border-none">
             UCLan Logo Jumper
         </button>
 
-        <button onclick="filterProducts('UCLan Logo Tshirt')" class="dark:bg-gray-700 dark:text-white dark:hover:bg-gray-900 inline-flex items-center px-4 lg:px-8 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:outline-none dark:border-none">
+        <button onclick="filterProducts('UCLan Logo Tshirt')" class="w-full text-center sm:text-left whitespace-nowrap dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 inline-flex items-center px-4 lg:px-8 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-uclan-yellow focus:z-10 focus:ring-2 focus:ring-uclan-yellow focus:text-uclan-yellow dark:outline-none dark:border-none">
             UCLan Logo Tshirt
         </button>
 
-        <button onclick="filterProducts('UCLan Hoodie')" class="dark:bg-gray-700 dark:text-white dark:hover:bg-gray-900 inline-flex items-center px-4 lg:px-8 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:outline-none dark:border-none">
+        <button onclick="filterProducts('UCLan Hoodie')" class="w-full text-center sm:text-left whitespace-nowrap dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 inline-flex items-center px-4 lg:px-8 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-uclan-yellow focus:z-10 focus:ring-2 focus:ring-uclan-yellow focus:text-uclan-yellow dark:outline-none dark:border-none">
             UCLan Hoodie
         </button>
     </div>
