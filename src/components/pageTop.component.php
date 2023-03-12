@@ -171,8 +171,26 @@ require_once "../components/connection.component.php";
                     </svg>
                 </button>
 
-                <?php if (isset($_SESSION["isLoggedIn"]) && $_SESSION["isLoggedIn"] == true) { ?>
+                <button id="cartIcon" type="button" onclick="populateCartDropdown()" class="mr-3 text-white focus:outline-none hover:text-uclan-red hover:bg-gray-100 rounded-lg text-sm p-2.5" aria-expanded="false" data-dropdown-toggle="cart-dropdown" data-dropdown-placement="bottom">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                        <path d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" />
+                    </svg>
+                </button>
 
+                <!-- dropdown -->
+                <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="cart-dropdown">
+                    <div class="px-4 py-3">
+                        <span class="block text-sm text-gray-900 dark:text-white">
+                            Glance At Your Cart
+                        </span>
+                    </div>
+
+                    <ul class="py-2 flex flex-col space-y-2" aria-labelledby="user-menu-button" id="cart-dropdown-list">
+                        <!-- populated from js -->
+                    </ul>
+                </div>
+
+                <?php if (isset($_SESSION["isLoggedIn"]) && $_SESSION["isLoggedIn"] == true) { ?>
                     <div class="flex items-center md:order-2 mr-2">
                         <button type="button" class="text-white focus:outline-none hover:text-uclan-red hover:bg-gray-100 rounded-lg text-sm p-2.5" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                             <span class="sr-only">Open user menu</span>
@@ -214,7 +232,6 @@ require_once "../components/connection.component.php";
                     <a href="./signup.php" class="hidden md:block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 my-auto whitespace-nowrap">
                         Get Started
                     </a>
-
                 <?php } ?>
 
                 <button data-collapse-toggle="navbar-cta" type="button" class="md:hidden inline-flex items-center mr-3 text-white focus:outline-none hover:text-uclan-red hover:bg-gray-100 rounded-lg text-sm p-2.5" aria-controls="navbar-cta" aria-expanded="false">
