@@ -44,23 +44,38 @@ require_once "../components/pageTop.component.php";
         Currently Running Offers
     </h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-4"> -->
+    <div class="grid grid-cols-1">
         <?php
         require_once("../components/connection.component.php");
 
         $q = "SELECT * FROM tbl_offers";
         $res = mysqli_query($conn, $q);
 
-        while ($row = mysqli_fetch_array($res)) {
-            echo '
-<div class="p-4 mb-4 text-blue-800 border border-blue-300 rounded-lg dark:bg-gray-800 bg-blue-50 dark:text-blue-400 dark:border-blue-800">
-    <h3 class="text-lg font-medium capitalize">' . $row["offer_title"] . '</h3>
-    <span class="my-2 text-sm dark:text-white">' . $row["offer_dec"] . '</span>
-</div>
-';
-        }
         ?>
-    </div>
-</div>
 
-<?php require_once "../components/pageBottom.component.php"; ?>
+        <div id="accordion-collapse" data-accordion="collapse">
+            <?php while ($row = mysqli_fetch_array($res)) { ?>
+                <!-- heading -->
+                <h2 id=<?php echo 'heading-' . $row["offer_id"] ?>>
+                    <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target=<?php echo '#body-' . $row["offer_id"] ?> aria-expanded="true" aria-controls=<?php echo 'body-' . $row["offer_id"] ?>>
+                        <span class="capitalize"><?php echo $row["offer_title"] ?></span>
+                        <svg data-accordion-icon class="w-6 h-6 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </h2>
+
+                <!-- content -->
+                <div id=<?php echo 'body-' . $row["offer_id"] ?> class="hidden" aria-labelledby=<?php echo 'heading-' . $row["offer_id"] ?>>
+                    <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+                        <p class="mb-2 text-gray-800 dark:text-gray-200">
+                            <?php echo $row["offer_dec"] ?>
+                        </p>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+
+    <?php require_once "../components/pageBottom.component.php"; ?>
