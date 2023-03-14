@@ -1,11 +1,18 @@
 <?php
 
-function createCard($id, $title, $price, $image, $desc, $type)
+function createCard($row)
 {
+    $id = $row['product_id'];
+    $title = $row['product_title'];
+    $price = $row['product_price'];
+    $image = $row['product_image'];
+    $desc = $row['product_desc'];
+    $type = $row['product_type'];
+
     echo '
 <div data-selector="' . $type . '" id=' . $id . ' class="productCard w-full max-w-sm bg-white dark:bg-gray-800 border dark:border-none border-gray-200 rounded-lg shadow">
     <a href="#">
-        <img class="p-8 rounded-t-lg" src="/~ssarfaraz/public/' . $id . '" alt="product image" />
+        <img class="p-8 rounded-t-lg" src="/~ssarfaraz/public/' . $image . '" alt=' . ucfirst(strtolower($desc)) . ' />
     </a>
     <div class="px-5 pb-5">
         <a href="#">
@@ -22,7 +29,7 @@ function createCard($id, $title, $price, $image, $desc, $type)
         <p class="my-4">' . ucfirst(strtolower($desc)) . '</p>
         <div class="flex items-center justify-between">
             <span class="text-3xl font-bold text-gray-900 dark:text-white" id="productPrice' . $id . '">€' . $price . '</span>
-            <button onclick="addToCart(' . $id . ')" class="text-white bg-uclan-blue hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-uclan-blue font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add to cart</button>
+            <button onclick=\'addToCart(' . json_encode($row) .  ')\' class="text-white bg-uclan-blue hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-uclan-blue font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add to cart</button>
         </div>
     </div>
 </div>

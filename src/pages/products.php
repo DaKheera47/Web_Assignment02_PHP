@@ -31,24 +31,27 @@ $res = mysqli_query($conn, $q);
     </div>
 </div>
 
+<!-- <div class="w-full grid grid-cols-1 gap-4"> -->
 <div class="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
     <?php
     require_once '../components/productCard.component.php';
 
-    while ($row = mysqli_fetch_array($res)) {
-        $product_id = $row['product_id'];
-        $product_title = $row['product_title'];
-        $product_price = $row['product_price'];
-        $product_image = $row['product_image'];
-        $product_desc = $row['product_desc'];
-        $type = $row['product_type'];
+    // print all products
 
-        createCard($product_id, $product_title, $product_price, $product_image, $product_desc, $type);
+    while ($row = mysqli_fetch_array($res, MYSQLI_ASSOC)) {
+
+        // echo "<pre class=\"monospace\">";
+        // foreach($row as $x => $x_value) {
+        //     echo "Key=" . $x . ", Value=" . $x_value;
+        //     echo "<br>";
+        // }
+        // echo "</pre>";
+
+        createCard($row);
     }
     ?>
 </div>
 
-<script src="../js/useLocalStorage.js"></script>
 <script>
     function filterProducts(type) {
         if (type == "All") {
@@ -69,89 +72,6 @@ $res = mysqli_query($conn, $q);
                 products[i].style.display = "none";
             }
         }
-    }
-
-    if (getLocalStorage("cart") == null) {
-        document.getElementById("cartIcon").classList.add("hidden");
-    }
-
-    function addToCart(id) {
-        let cart = getLocalStorage("cart");
-
-        if (cart == null) {
-            cart = [];
-        }
-
-        cart.push(id);
-        setLocalStorage("cart", cart);
-    }
-
-    function populateCartDropdown() {
-        let cart = getLocalStorage("cart");
-        let cartItems = document.getElementById("cart-dropdown-list");
-
-        if (document.getElementById("cart-dropdown-error") != null) {
-            document.getElementById("cart-dropdown-error").remove();
-        } else {
-            let cartItems = document.getElementById("cart-dropdown-list");
-            while (cartItems.firstChild) {
-                cartItems.removeChild(cartItems.firstChild);
-            }
-        }
-
-        if (cart == null || cart.length == 0) {
-            let errorMessage = document.createElement("span");
-            errorMessage.id = "cart-dropdown-error";
-
-            errorMessage.classList.add("text-sm", "font-medium", "text-white", "mx-auto");
-            errorMessage.innerHTML = "Your cart is empty";
-            cartItems.appendChild(errorMessage);
-
-            return;
-        }
-
-        const counts = cart.reduce((acc, item) => {
-            acc[item] = (acc[item] || 0) + 1;
-            return acc;
-        }, {});
-
-        const userUniqueCartItems = Object.keys(counts).map((key) => {
-            return {
-                id: Number(key),
-                count: counts[key]
-            };
-        });
-
-        userUniqueCartItems.forEach(({
-            id,
-            count
-        }) => {
-            let product = document.createElement("div");
-            product.classList.add("flex", "justify-between", "items-center", "px-4", "py-2", "border-b", "border-gray-200", "space-x-4");
-
-            let contentDiv = document.createElement("div");
-            contentDiv.classList.add("flex", "items-center", "space-x-2");
-
-            let productCount = document.createElement("span");
-            productCount.classList.add("inline-flex", "items-center", "justify-center", "w-4", "h-4", "ml-2", "text-xs", "font-semibold", "text-blue-800", "bg-blue-200", "rounded-full");
-            productCount.innerHTML = count;
-
-            let productTitle = document.createElement("span");
-            productTitle.classList.add("text-sm", "font-medium", "text-gray-900", "dark:text-white");
-            productTitle.innerHTML = document.getElementById("productTitle" + id).innerHTML;
-
-            let productPrice = document.createElement("span");
-            productPrice.classList.add("text-sm", "text-gray-500", "dark:text-gray-200");
-            productPrice.innerHTML = document.getElementById("productPrice" + id).innerHTML;
-
-            contentDiv.appendChild(productCount);
-            contentDiv.appendChild(productTitle);
-
-            product.appendChild(contentDiv);
-            product.appendChild(productPrice);
-
-            cartItems.appendChild(product);
-        })
     }
 </script>
 
