@@ -1,14 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 
-// let plugin = require("tailwindcss/plugin");
+let plugin = require("tailwindcss/plugin");
 
 module.exports = {
-    // content: ["./*.php", "./*.html", "./src/**/*.php", "./src/**/*.component.php"],
     content: [
         "./*.php",
         "./*.html",
         "./src/**/*.php",
         "./src/**/*.component.php",
+        "./src/**/*.js",
     ],
     darkMode: "class", // or 'media' or 'class'
     theme: {
@@ -20,10 +20,12 @@ module.exports = {
             },
         },
     },
-    // plugins: [
-    //     plugin(function ({ addVariant }) {
-    //         // Add a `third` variant, ie. `third:pb-0`
-    //         addVariant("children", "&>*");
-    //     }),
-    // ],
+    plugins: [
+        plugin(function ({ addVariant }) {
+            // Add a `third` variant, ie. `third:pb-0`
+            addVariant("children", "&>*");
+        }),
+        // https://www.npmjs.com/package/tailwind-scrollbar
+        require("tailwind-scrollbar")({ nocompatible: true }),
+    ],
 };

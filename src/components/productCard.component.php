@@ -10,7 +10,7 @@ function createCard($row)
     $type = $row['product_type'];
 
     echo '
-<div data-selector="' . $type . '" id=' . $id . ' class="productCard w-full max-w-sm bg-white dark:bg-gray-800 border dark:border-none border-gray-200 rounded-lg shadow">
+<div data-selector="' . $type . '" id=' . $id . ' class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow productCard dark:bg-gray-800 dark:border-none">
     <a href="#">
         <img class="p-8 rounded-t-lg" src="/~ssarfaraz/public/' . $image . '" alt=' . ucfirst(strtolower($desc)) . ' />
     </a>

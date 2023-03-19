@@ -11,7 +11,7 @@ require_once "../components/pageTop.component.php";
         </div>
     <?php } ?>
 
-    <h1 class="heading mb-4">
+    <h1 class="mb-4 heading">
         Where opportunity creates success
     </h1>
 
@@ -33,25 +33,24 @@ require_once "../components/pageTop.component.php";
 
 
 <div class="my-10">
-    <h1 class="heading mb-4">
+    <h1 class="mb-4 heading">
         Our Open Day!
     </h1>
     <iframe class="w-full h-96" src="https://www.youtube.com/embed/wyXNXbqFdAs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
 </div>
 
 <div class="my-10">
-    <h1 class="heading mb-4">
+    <h1 class="mb-4 heading">
         Currently Running Offers
     </h1>
 
-    <!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-4"> -->
+    <!-- <div class="grid grid-cols-1 gap-4 md:grid-cols-3"> -->
     <div class="grid grid-cols-1">
         <?php
         require_once("../components/connection.component.php");
 
         $q = "SELECT * FROM tbl_offers";
         $res = mysqli_query($conn, $q);
-
         ?>
 
         <div id="accordion-collapse" data-accordion="collapse">

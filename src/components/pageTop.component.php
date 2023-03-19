@@ -12,6 +12,7 @@ require_once "../components/connection.component.php";
     <link rel="stylesheet" href="../../output.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?php echo $tab_title; ?></title>
+    <?php require_once '../components/scripts.component.php'; ?>
 
     <script>
         // enable dark mode
@@ -60,13 +61,13 @@ require_once "../components/connection.component.php";
     </script>
 </head>
 
-<body class="dark:bg-gray-900 dark:text-white pt-16 md:pt-24">
+<body class="pt-16 dark:bg-gray-900 dark:text-white md:pt-24">
     <nav class="fixed top-0 left-0 w-full bg-uclan-red text-white border-gray-200 px-[5vw] py-2.5 rounded">
-        <div class="container flex flex-wrap items-center justify-between mx-auto max-w-screen-xl">
+        <div class="container flex flex-wrap items-center justify-between max-w-screen-xl mx-auto">
             <a href="./index.php" class="flex items-center">
-                <img src="../../public/images/uclanLogo.jpg" class="rounded-full h-6 mr-3 sm:h-9" alt="UCLan Logo" />
+                <img src="../../public/images/uclanLogo.jpg" class="h-6 mr-3 rounded-full sm:h-9" alt="UCLan Logo" />
 
-                <span class="font-semibold whitespace-nowrap dark:text-white text-sm lg:text-xl">
+                <span class="text-sm font-semibold whitespace-nowrap dark:text-white lg:text-xl">
                     UCLan Student Shop
                 </span>
             </a>
@@ -80,28 +81,28 @@ require_once "../components/connection.component.php";
                 </button>
 
                 <?php if (isset($_SESSION["isLoggedIn"]) && $_SESSION["isLoggedIn"] == true) { ?>
-                    <button id="cartIcon" type="button" onclick="populateCartDropdown()" class="mr-3 text-white focus:outline-none hover:text-uclan-red hover:bg-gray-100 rounded-lg text-sm p-2.5" aria-expanded="false" data-dropdown-toggle="cart-dropdown" data-dropdown-placement="bottom">
+                    <button id="cartIcon" type="button" onclick="populateCartGlance()" class="mr-3 text-white focus:outline-none hover:text-uclan-red hover:bg-gray-100 rounded-lg text-sm p-2.5" aria-expanded="false" data-dropdown-toggle="cart-dropdown" data-dropdown-placement="bottom">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                             <path d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" />
                         </svg>
                     </button>
 
                     <!-- dropdown -->
-                    <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 px-4" id="cart-dropdown">
+                    <div class="z-50 hidden px-4 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="cart-dropdown">
                         <div class="px-4 py-3">
                             <span class="block text-sm text-gray-900 dark:text-white">
                                 Glance At Your Cart
                             </span>
                         </div>
 
-                        <ul class="py-2 flex flex-col space-y-2" aria-labelledby="user-menu-button" id="cart-dropdown-list">
+                        <ul class="flex flex-col py-2 space-y-2" aria-labelledby="user-menu-button" id="cart-dropdown-list">
                             <!-- populated from js -->
                         </ul>
                     </div>
                 <?php } ?>
 
                 <?php if (isset($_SESSION["isLoggedIn"]) && $_SESSION["isLoggedIn"] == true) { ?>
-                    <div class="flex items-center md:order-2 mr-2">
+                    <div class="flex items-center mr-2 md:order-2">
                         <button type="button" class="text-white focus:outline-none hover:text-uclan-red hover:bg-gray-100 rounded-lg text-sm p-2.5" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                             <span class="sr-only">Open user menu</span>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
@@ -130,7 +131,7 @@ require_once "../components/connection.component.php";
                                 <li>
                                     <form action="./logout.php" method="POST" class="w-full">
                                         <input type="hidden" name="action" value="logout">
-                                        <button type="submit" class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                        <button type="submit" class="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                             Log Out
                                         </button>
                                     </form>
@@ -156,22 +157,27 @@ require_once "../components/connection.component.php";
             </div>
 
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
-                <ul class="flex flex-col p-4 mt-4 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium divide-y-2 md:divide-y-0">
+                <ul class="flex flex-col p-4 mt-4 divide-y-2 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:divide-y-0">
                     <li>
-                        <a href="./products.php" class="block py-2 pl-3 pr-4 text-white hover:text-gray-300 rounded md:p-0" aria-current="page">
+                        <a href="./index.php" class="block py-2 pl-3 pr-4 text-white rounded hover:text-gray-300 md:p-0" aria-current="page">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./products.php" class="block py-2 pl-3 pr-4 text-white rounded hover:text-gray-300 md:p-0" aria-current="page">
                             Products
                         </a>
                     </li>
 
                     <?php if (isset($_SESSION["isLoggedIn"]) && $_SESSION["isLoggedIn"] == true) { ?>
                         <li>
-                            <a href="./cart.php" class="block py-2 pl-3 pr-4 text-white hover:text-gray-300 rounded md:p-0" aria-current="page">
+                            <a href="./cart.php" class="block py-2 pl-3 pr-4 text-white rounded hover:text-gray-300 md:p-0" aria-current="page">
                                 Cart
                             </a>
                         </li>
                     <?php } else { ?>
                         <li>
-                            <a href="./login.php" class="block py-2 pl-3 pr-4 text-white hover:text-gray-300 rounded md:p-0" aria-current="page">
+                            <a href="./login.php" class="block py-2 pl-3 pr-4 text-white rounded hover:text-gray-300 md:p-0" aria-current="page">
                                 Login
                             </a>
                         </li>
