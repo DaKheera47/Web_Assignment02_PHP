@@ -2,19 +2,40 @@ if (getLocalStorage("cart") == null) {
     document.getElementById("cartIcon").classList.add("hidden");
 }
 
-function addToCart(id) {
+function addToCart(item) {
     let cart = getLocalStorage("cart");
 
     if (cart == null) {
         cart = [];
     }
 
-    cart.push(id);
+    cart.push(item);
+
+    let userUniqueCartItems = countDuplicateEntries(cart);
+
     setLocalStorage("cart", cart);
+    setLocalStorage("formattedCart", userUniqueCartItems);
+}
+
+function countDuplicateEntries(arr) {
+    const counts = arr.reduce((acc, curr) => {
+        const key = `${curr.product_id}-${curr.product_type}`;
+        if (!acc[key]) {
+            acc[key] = {
+                product: curr,
+                count: 1,
+            };
+        } else {
+            acc[key].count++;
+        }
+        return acc;
+    }, {});
+
+    return Object.values(counts);
 }
 
 function populateCart() {
-    let cart = getLocalStorage("cart");
+    let cart = getLocalStorage("formattedCart");
 
     // clear cart before populating
     const targetElement = document.getElementById("cart-items");
@@ -36,9 +57,14 @@ function populateCart() {
     }
 
     // for each item in cart
-    cart.forEach((item) => {
+    cart.forEach((cartItem) => {
+        let item = cartItem.product;
+        let count = cartItem.count;
+
         const htmlString = `
-    <div class="md:pl-3 flex flex-col justify-center py-8 md:py-10 lg:py-8 border-t border-gray-50 mx-4">
+    <div id="${
+        item.product_id
+    }" class="md:pl-3 flex flex-col justify-center py-8 md:py-10 lg:py-8 border-t border-gray-50 mx-4">
         <div class="flex items-center justify-between w-full pt-1 space-x-4">
             <div class="w-[200px] md:block hidden">
                 <img src="/~ssarfaraz/public/${item.product_image}" alt="${
@@ -50,16 +76,36 @@ function populateCart() {
                 ${item.product_title}
             </p>
 
-            <select aria-label="Select quantity" class="py-2 px-1 border border-gray-200 mr-6 focus:outline-none dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white">
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>
-                <option>08</option>
-                <option>09</option>
+            <select id="item-count-${
+                item.product_id
+            }" aria-label="Select quantity" class="py-2 px-1 border border-gray-200 mr-6 focus:outline-none dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white">
+                <option ${
+                    count === 1 ? "selected" : "unselected"
+                } value="1">01</option>
+                <option ${
+                    count === 2 ? "selected" : "unselected"
+                } value="2">02</option>
+                <option ${
+                    count === 3 ? "selected" : "unselected"
+                } value="3">03</option>
+                <option ${
+                    count === 4 ? "selected" : "unselected"
+                } value="4">04</option>
+                <option ${
+                    count === 5 ? "selected" : "unselected"
+                } value="5">05</option>
+                <option ${
+                    count === 6 ? "selected" : "unselected"
+                } value="6">06</option>
+                <option ${
+                    count === 7 ? "selected" : "unselected"
+                } value="7">07</option>
+                <option ${
+                    count === 8 ? "selected" : "unselected"
+                } value="8">08</option>
+                <option ${
+                    count === 9 ? "selected" : "unselected"
+                } value="9">09</option>
             </select>
         </div>
 
@@ -111,8 +157,21 @@ function calculateCheckout() {
     }
 
     cart.forEach((item) => {
+        let eItemCount = document.getElementById(
+            `item-count-${item.product_id}`
+        );
+
+        // eItemCount.addEventListener("change", () => {
+        //     calculateCheckout();
+        //     // count how many of this item is in the cart
+        //     let count = cart.filter((cartItem) => {
+        //         return cartItem.product_id === item.product_id;
+        //     }).length;
+        //     console.log("🚀 ~ file: handleCart.js:169 ~ count ~ count:", count);
+        // });
+
         // cast to int to avoid string concatenation
-        itemTotal += parseInt(item.product_price);
+        itemTotal += parseInt(item.product_price * eItemCount.value);
     });
 
     let tax = itemTotal * taxPc;
@@ -139,9 +198,64 @@ function handleRemoveItem(item) {
     // remove the item from the cart
     cart.splice(index, 1);
 
+    let userUniqueCartItems = countDuplicateEntries(cart);
+
     setLocalStorage("cart", cart);
+    setLocalStorage("formattedCart", userUniqueCartItems);
     populateCart();
 }
 
+function calculateCartCount(item) {
+    // get cart
+    let cart = getLocalStorage("cart");
+
+    // count how many of this item is in the cart
+    let count = cart.filter((cartItem) => {
+        return cartItem.product_id === item.product_id;
+    }).length;
+
+    cart.forEach((item) => {
+        let eItemCount = document.getElementById(
+            `item-count-${item.product_id}`
+        );
+
+        if (eItemCount === null) return;
+
+        if (eItemCount.value > count) {
+            let diff = eItemCount.value - count;
+            for (let i = 0; i < diff; i++) {
+                addToCart(item);
+            }
+        } else if (eItemCount.value < count) {
+            let diff = count - eItemCount.value;
+            for (let i = 0; i < diff; i++) {
+                handleRemoveItem(item);
+            }
+        }
+
+        calculateCheckout();
+    });
+
+    // eItemCount.addEventListener("change", () => {
+}
+
 // on page load
-populateCart();
+window.onload = () => {
+    let cart = getLocalStorage("formattedCart");
+    populateCart();
+
+    cart.forEach((product) => {
+        let item = product.product;
+
+        let eItemCount = document.getElementById(
+            `item-count-${item.product_id}`
+        );
+
+        if (eItemCount === null) return;
+
+        eItemCount.addEventListener("change", () => {
+            calculateCheckout();
+            calculateCartCount();
+        });
+    });
+};
