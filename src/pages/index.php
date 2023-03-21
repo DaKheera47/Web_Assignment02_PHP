@@ -7,7 +7,9 @@ require_once "../components/pageTop.component.php";
     <?php
     if (isset($_SESSION["isLoggedIn"]) && $_SESSION["isLoggedIn"] == true && isset($_SESSION["user_full_name"])) { ?>
         <div class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
-            Welcome back, <span class="text-uclan-red dark:text-uclan-yellow"> <?php echo $_SESSION["user_full_name"] ?></span>
+            Welcome back, <span class="text-uclan-red dark:text-uclan-yellow">
+                <?php echo $_SESSION["user_full_name"] ?>
+            </span>
         </div>
     <?php } ?>
 
@@ -44,7 +46,6 @@ require_once "../components/pageTop.component.php";
         Currently Running Offers
     </h1>
 
-    <!-- <div class="grid grid-cols-1 gap-4 md:grid-cols-3"> -->
     <div class="grid grid-cols-1">
         <?php
         require_once("../components/connection.component.php");

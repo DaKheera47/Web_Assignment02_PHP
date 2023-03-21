@@ -10,7 +10,7 @@ function createCard($row)
     $type = $row['product_type'];
 
     echo '
-<div data-selector="' . $type . '" id=' . $id . ' class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow productCard dark:bg-gray-800 dark:border-none">
+<div data-selector="' . $type . '" id=' . $id . ' class="w-full h-fit max-w-sm bg-white border border-gray-200 rounded-lg shadow productCard mb-8 dark:bg-gray-800 dark:border-none">
     <img class="p-8 rounded-t-lg" src="/~ssarfaraz/public/' . $image . '" alt=' . ucfirst(strtolower($desc)) . ' />
 
     <div class="px-5 pb-5">
@@ -29,6 +29,7 @@ function createCard($row)
             <span class="bg-blue-100 text-uclan-blue text-xs font-semibold mr-2 px-2.5 py-0.5 rounded ml-3">5.0</span>
         </div>
         <p class="my-4">' . ucfirst(strtolower($desc)) . '</p>
+
         <div class="flex items-center justify-between">
             <span class="text-3xl font-bold text-gray-900 dark:text-white" id="productPrice' . $id . '">€' . $price . '</span>
             <button onclick=\'addToCart(' . json_encode($row) .  ')\' class="text-white bg-uclan-blue hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-uclan-blue font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add to cart</button>
