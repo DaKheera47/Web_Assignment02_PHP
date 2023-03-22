@@ -1,0 +1,7 @@
+RewriteEngine On
+ErrorDocument 404 /~ssarfaraz/src/pages/404.php
+
+# https://www.opentechguides.com/how-to/article/apache/115/htaccess-file-dir-security.html
+# https://httpd.apache.org/docs/current/rewrite/intro.html
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(.*)$ /~ssarfaraz/src/pages/404.php [L]
