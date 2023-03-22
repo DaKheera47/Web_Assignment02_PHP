@@ -12,6 +12,12 @@
     .heading {
         @apply text-3xl font-bold capitalize text-uclan-blue dark:text-uclan-yellow;
     }
+    .invalid {
+        @apply text-red-500;
+    }
+    .valid {
+        @apply text-green-500;
+    }
 }
 
 * {

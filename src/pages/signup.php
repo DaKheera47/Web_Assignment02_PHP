@@ -80,24 +80,41 @@ if (isset($_SESSION["user_email"]) && isset($_SESSION["user_pass"]) && isset($_S
 
 <!-- sign up form -->
 <form action="signup.php" method="post">
-    <div class="flex flex-col max-w-md px-8 pt-6 pb-8 mx-auto mb-4 space-y-4 transition-shadow bg-white rounded shadow-md hover:shadow-xl dark:bg-gray-700">
+    <div class="flex flex-col max-w-2xl px-8 pt-6 pb-8 mx-auto mb-4 space-y-4 transition-shadow bg-white rounded shadow-md hover:shadow-xl dark:bg-gray-700">
         <div>
-            <label for="user_email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Email</label>
-            <input required type="text" id="user_email" name="user_email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ilovecats@gmail.com">
+            <label for="user_email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                Your Email
+            </label>
+            <input required type="text" id="user_email" name="user_email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="username@uclan.ac.uk">
+        </div>
+
+        <div class="grid grid-cols-2 gap-x-4">
+            <div>
+                <label for="user_pass" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Your Password
+                </label>
+                <input required type="password" name="user_pass" id="user_pass" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Unhackable Password">
+            </div>
+
+            <div>
+                <label for="confirm_user_pass" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Confirm Your Password
+                </label>
+                <input required type="password" name="confirm_user_pass" id="confirm_user_pass" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Unhackable Password">
+            </div>
         </div>
 
         <div>
-            <label for="user_pass" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Password</label>
-            <input required type="user_pass" name="user_pass" id="user_pass" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Top Secret Password">
-        </div>
-
-        <div>
-            <label for="user_full_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Full Name</label>
+            <label for="user_full_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                Your Full Name
+            </label>
             <input required type="text" id="user_full_name" name="user_full_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Alan Turing">
         </div>
 
         <div>
-            <label for="user_address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Address</label>
+            <label for="user_address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                Your Address
+            </label>
             <input required type="text" id="user_address" name="user_address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="NaN Boulevard, JS Land">
         </div>
 
@@ -109,16 +126,123 @@ if (isset($_SESSION["user_email"]) && isset($_SESSION["user_pass"]) && isset($_S
             instead
         </p>
 
-        <div class="flex items-center justify-between">
-            <button type="submit" class="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800 flex group transition-all">
-                Create Account
+        <div id="passwordMsg" class="hidden">
+            <h3>Password must contain the following:</h3>
+            <p id="letterMsg" class="invalid">A <b>lowercase</b> letter</p>
+            <p id="capitalMsg" class="invalid">A <b>capital (uppercase)</b> letter</p>
+            <p id="numberMsg" class="invalid">A <b>number</b></p>
+            <p id="lengthMsg" class="invalid">Minimum <b>8 characters</b></p>
+        </div>
 
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hidden w-5 h-5 ml-2 group-hover:block">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" />
-                </svg>
+        <div class="flex items-center justify-between">
+            <button type="submit" class="text-green-700 enabled:hover:text-white border border-green-700 enabled:hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-green-500 dark:text-green-500 enabled:dark:hover:text-white enabled:dark:hover:bg-green-600 dark:focus:ring-green-800 flex group transition-all disabled:opacity-50 disabled:cursor-not-allowed" id="submitBtn">
+                Create Account
             </button>
         </div>
     </div>
 </form>
+
+<script>
+    // getting all required elements
+    let ePassword = document.getElementById("user_pass");
+    let eConfirmPassword = document.getElementById("confirm_user_pass");
+    let eLetterMsg = document.getElementById("letterMsg");
+    let eCapitalMsg = document.getElementById("capitalMsg");
+    let eNumberMsg = document.getElementById("numberMsg");
+    let eLengthMsg = document.getElementById("lengthMsg");
+    let eMessageDiv = document.getElementById("passwordMsg");
+    let eSubmitBtn = document.getElementById("submitBtn");
+
+    // regexes for specific fields
+    // https://regexlearn.com/cheatsheet
+    var rLowerCaseLetters = /[a-z]/g;
+    var rUpperCaseLetters = /[A-Z]/g;
+    var rNumbers = /[0-9]/g;
+
+    function validatePassword() {
+        let isValid = true;
+
+        // Validate lowercase letters
+        if (ePassword.value.match(rLowerCaseLetters)) {
+            eLetterMsg.classList.remove("invalid");
+            eLetterMsg.classList.add("valid");
+        } else {
+            isValid = false;
+            eLetterMsg.classList.remove("valid");
+            eLetterMsg.classList.add("invalid");
+        }
+
+        // Validate capital letters
+        if (ePassword.value.match(rUpperCaseLetters)) {
+            eCapitalMsg.classList.remove("invalid");
+            eCapitalMsg.classList.add("valid");
+        } else {
+            isValid = false;
+            eCapitalMsg.classList.remove("valid");
+            eCapitalMsg.classList.add("invalid");
+        }
+
+        // Validate numbers
+        if (ePassword.value.match(rNumbers)) {
+            eNumberMsg.classList.remove("invalid");
+            eNumberMsg.classList.add("valid");
+        } else {
+            isValid = false;
+            eNumberMsg.classList.remove("valid");
+            eNumberMsg.classList.add("invalid");
+        }
+
+        // Validate length
+        if (ePassword.value.length >= 8) {
+            eLengthMsg.classList.remove("invalid");
+            eLengthMsg.classList.add("valid");
+        } else {
+            isValid = false;
+            eLengthMsg.classList.remove("valid");
+            eLengthMsg.classList.add("invalid");
+        }
+
+        return isValid;
+    }
+
+    function areBothPasswordsSame() {
+        console.log(ePassword.value, eConfirmPassword.value);
+        return ePassword.value === eConfirmPassword.value;
+    }
+
+    // When the user clicks on the password field, show the message box
+    ePassword.onfocus = function() {
+        eMessageDiv.classList.remove("hidden");
+    }
+
+    // When the user clicks outside of the password field, hide the message box
+    ePassword.onblur = function() {
+        eMessageDiv.classList.add("hidden");
+    }
+
+    // When the user starts to type something inside the password field
+    ePassword.onkeyup = function() {
+        // Validate password
+        if (validatePassword() && areBothPasswordsSame()) {
+            eSubmitBtn.disabled = false;
+        } else {
+            eSubmitBtn.disabled = true;
+        }
+    }
+
+    // When the user starts to type something inside the password field
+    eConfirmPassword.onkeyup = function() {
+        // Validate password
+        if (validatePassword() && areBothPasswordsSame()) {
+            eSubmitBtn.disabled = false;
+        } else {
+            eSubmitBtn.disabled = true;
+        }
+    }
+
+    // for when the page is loaded
+    eSubmitBtn.disabled = true;
+</script>
+
 
 <?php require_once "../components/pageBottom.component.php"; ?>
