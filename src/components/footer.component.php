@@ -1,18 +1,18 @@
-<footer class="text-white bg-uclan-blue dark:bg-gray-800">
-    <div class="grid grid-cols-1 gap-8 px-6 py-16 mx-auto md:grid-cols-3 max-w-7xl">
+<footer class="text-white px-[5vw] bg-uclan-blue dark:bg-gray-800">
+    <div class="grid max-w-screen-xl grid-cols-1 gap-8 py-16 mx-auto md:grid-cols-3 ">
         <div>
             <h2 class="mb-6 text-lg font-semibold uppercase">
                 Navigation
             </h2>
-            <ul class="">
-                <li class="mb-4">
-                    <a href="#" class="link">Home</a>
+            <ul class="children:mb-4">
+                <li>
+                    <a href="./index.php" class="link">Home</a>
                 </li>
-                <li class="mb-4">
-                    <a href="#" class="link">Products</a>
+                <li>
+                    <a href="./products.php" class="link">Products</a>
                 </li>
-                <li class="mb-4">
-                    <a href="#" class="link">Cart</a>
+                <li>
+                    <a href="./cart.php" class="link">Cart</a>
                 </li>
             </ul>
         </div>
@@ -21,28 +21,29 @@
             <h2 class="mb-6 text-lg font-semibold uppercase">
                 Contact
             </h2>
-            <ul>
-                <li class="mb-4">
+            <ul class="children:mb-4">
+                <li>
                     Email:
                     <a href="mailto:suinformation@uclan.ac.uk" class="link">suinformation@uclan.ac.uk</a>
                 </li>
-                <li class="mb-4">
+                <li>
                     Phone:
                     <a href="tel:+441772893000" class="link">+44 1772 89 3000</a>
                 </li>
             </ul>
         </div>
+
         <div>
             <h2 class="mb-6 text-lg font-semibold uppercase">
                 Location
             </h2>
-            <ul class="">
-                <li class="mb-4">
+            <ul class="children:mb-4">
+                <li>
                     University of Central Lancashire Students" Union.
                     Fylde Road. Preston. PR1 7BY
                 </li>
-                <li class="mb-4">Company Number: 7623917</li>
-                <li class="mb-4">Registered Chanty Number: 1142616</li>
+                <li>Company Number: 7623917</li>
+                <li>Registered Chanty Number: 1142616</li>
             </ul>
         </div>
     </div>
