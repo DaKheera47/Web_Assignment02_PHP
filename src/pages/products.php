@@ -7,7 +7,7 @@ $q = "SELECT * FROM tbl_products ORDER BY product_type";
 $res = mysqli_query($conn, $q);
 
 if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) { ?>
-    <div id="error-banner" tabindex="-1" class="fixed top-16 left-0 z-50 flex justify-between w-full p-4 bg-red-200 dark:bg-red-900">
+    <div id="error-banner" tabindex="-1" class="fixed left-0 z-50 flex justify-between w-full p-4 bg-red-200 top-16 dark:bg-red-900">
         <div class="flex items-center mx-auto">
             <p class="flex items-center text-sm font-normal text-gray-800 dark:text-white">
                 <span>
@@ -70,7 +70,7 @@ if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) { ?>
         // }
         // echo "</pre>";
 
-        createCard($row);
+        createCard($row, $conn);
     }
     ?>
 </div>
