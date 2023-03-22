@@ -3,13 +3,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
 @layer components {
     .link {
         @apply text-uclan-yellow hover:underline;
     }
     .heading {
-        @apply text-3xl text-uclan-blue dark:text-uclan-yellow font-bold capitalize;
+        @apply text-3xl font-bold capitalize text-uclan-blue dark:text-uclan-yellow;
     }
+}
+
+* {
+    font-family: "Nunito", sans-serif;
 }
 
 body {
