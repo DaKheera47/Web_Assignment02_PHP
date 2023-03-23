@@ -31,7 +31,7 @@ function createCard($row, $conn)
             <form action="viewProduct.php">
                 <input type="hidden" name="id" value="<?php echo $id ?>">
                 <button type="submit">
-                    <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white" id="productTitle<?php echo $id ?>"><?php echo $title ?></h5>
+                    <h6 class="link text-xl font-semibold tracking-tight text-gray-900 dark:text-white" id="productTitle<?php echo $id ?>"><?php echo $title ?></h6>
                 </button>
             </form>
 
