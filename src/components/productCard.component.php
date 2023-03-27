@@ -31,7 +31,7 @@ function createCard($row, $conn)
             <form action="viewProduct.php">
                 <input type="hidden" name="id" value="<?php echo $id ?>">
                 <button type="submit">
-                    <h6 class="link text-xl font-semibold tracking-tight text-gray-900 dark:text-white" id="productTitle<?php echo $id ?>"><?php echo $title ?></h6>
+                    <h6 class="text-xl font-semibold tracking-tight text-gray-900 link dark:text-white" id="productTitle<?php echo $id ?>"><?php echo $title ?></h6>
                 </button>
             </form>
 
@@ -55,7 +55,7 @@ function createCard($row, $conn)
 
             <div class="flex items-center justify-between">
                 <span class="text-3xl font-bold text-gray-900 dark:text-white" id="productPrice<?php echo $id ?>">€<?php echo $price ?></span>
-                <button onclick='addToCart(<?php echo json_encode($row) ?>)' class="text-white bg-uclan-blue hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-uclan-blue font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add to cart</button>
+                <button onclick='addToCart(<?php echo $row["product_id"] ?>)' class="text-white bg-uclan-blue hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-uclan-blue font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add to cart</button>
             </div>
         </div>
     </div>
