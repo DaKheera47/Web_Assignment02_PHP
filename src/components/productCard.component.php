@@ -24,7 +24,7 @@ function createCard($row, $conn)
     }
 ?>
 
-    <div data-selector="<?php echo $type ?>" id="<?php echo $id ?>" class="w-full max-w-sm mb-8 bg-white border border-gray-200 rounded-lg shadow h-fit productCard dark:bg-gray-800 dark:border-none">
+    <div data-card="true" data-selector="<?php echo $type ?>" id="<?php echo $id ?>" class="w-full max-w-sm mb-8 bg-white border border-gray-200 rounded-lg shadow h-fit productCard dark:bg-gray-800 dark:border-none">
         <img class="p-8 rounded-t-lg" src="/~ssarfaraz/public/<?php echo $image ?>" alt="<?php echo ucfirst(strtolower($desc)) ?>" />
 
         <div class="px-5 pb-5">
@@ -54,9 +54,15 @@ function createCard($row, $conn)
             <p class="my-4"><?php echo ucfirst(strtolower($desc)) ?></p>
 
             <div class="flex items-center justify-between">
-                <span class="text-3xl font-bold text-gray-900 dark:text-white" id="productPrice<?php echo $id ?>">€<?php echo $price ?></span>
-                <button onclick='addToCart(<?php echo $row["product_id"] ?>)' class="text-white bg-uclan-blue hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-uclan-blue font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add to cart</button>
+                <span class="text-3xl font-bold text-gray-900 dark:text-white" id="productPrice<?php echo $id ?>">
+                    €<?php echo $price ?>
+                </span>
+
+                <button onclick='addToCart(<?php echo $row["product_id"] ?>)' class="text-white bg-uclan-blue hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-uclan-blue font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                    Add to cart
+                </button>
             </div>
+
         </div>
     </div>
 

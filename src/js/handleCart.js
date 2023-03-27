@@ -86,6 +86,7 @@ function addToCart(id) {
     cart.push(id);
 
     setLocalStorage("cart", cart);
+    handleButtonColor();
 }
 
 function handleRemoveItem(id) {
@@ -106,6 +107,30 @@ function handleRemoveItem(id) {
 
     setLocalStorage("cart", cart);
     renderCartItems();
+}
+
+function handleButtonColor() {
+    // get cart using useLocalStorage hook
+    let cart = getLocalStorage("cart");
+
+    // get all products with data-card="true" attribute
+    const products = document.querySelectorAll('[data-card="true"]');
+
+    // loop through all products
+    products.forEach((product) => {
+        // for each item in cart
+        cart.forEach((cartItem) => {
+            // if product is also in the cart, if it includes the product id which is in the id attribute
+            if (cartItem == product.id) {
+                // get the button
+                const eButton = product.getElementsByTagName("button")[1];
+
+                // add the class
+                eButton.classList.add("bg-green-500");
+                eButton.classList.add("hover:bg-green-600");
+            }
+        });
+    });
 }
 
 async function renderCartItems() {
@@ -217,3 +242,4 @@ async function renderCartItems() {
 }
 
 renderCartItems();
+handleButtonColor();

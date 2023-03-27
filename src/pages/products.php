@@ -39,7 +39,7 @@ if ($result->num_rows > 0) {
 if (isset($_SESSION["error"]) && !empty($_SESSION["error"])) { ?>
     <div id="error-banner" tabindex="-1" class="fixed left-0 z-50 flex justify-between w-full p-4 bg-red-200 top-16 dark:bg-red-900">
         <div class="flex items-center mx-auto">
-            <a href="./products.php" class="flex items-center text-sm font-normal text-gray-800 dark:text-white space-x-2">
+            <a href="./products.php" class="flex items-center space-x-2 text-sm font-normal text-gray-800 dark:text-white">
                 <span>
                     <?php echo $_SESSION["error"]; ?>
                 </span>
@@ -67,13 +67,13 @@ if ($result->num_rows > 0) { ?>
 
     <?php if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
         $search_query = htmlspecialchars($_GET['search_query']); ?>
-        <h2 class='mb-4 text-uclan-yellow text-2xl capitalize'>Showing Search results for: <?php echo $search_query ?> </h2>
+        <h2 class='mb-4 text-2xl capitalize text-uclan-yellow'>Showing Search results for: <?php echo $search_query ?> </h2>
     <?php } else if (isset($_GET['sort']) && !empty($_GET['sort'])) { ?>
-        <h2 class='mb-4 text-uclan-yellow text-2xl capitalize'>
+        <h2 class='mb-4 text-2xl capitalize text-uclan-yellow'>
             Showing <?php echo $_GET['sort'] ?> Products
         </h2>
     <?php } else { ?>
-        <h2 class='mb-4 text-uclan-yellow text-2xl capitalize'>
+        <h2 class='mb-4 text-2xl capitalize text-uclan-yellow'>
             Showing all products
         </h2>
     <?php } ?>
@@ -123,7 +123,7 @@ if ($result->num_rows > 0) { ?>
                 </svg>
             </div>
 
-            <input type="search" name="search_query" id="default-search" class="block w-full z-10 p-4 pl-10 text-sm text-gray-900 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos..." required>
+            <input type="search" name="search_query" id="default-search" class="z-10 block w-full p-4 pl-10 text-sm text-gray-900 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos..." required>
             <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
         </div>
     </form>
@@ -144,4 +144,5 @@ if ($result->num_rows > 0) { ?>
 <?php } ?>
 
 <script src="../js/handleCart.js"></script>
+<script src="../js/handleProductCard.js"></script>
 <?php require_once "../components/pageBottom.component.php"; ?>
