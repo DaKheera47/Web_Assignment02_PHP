@@ -75,6 +75,11 @@ function calculateCheckoutValues(productData) {
     eTotal.innerHTML = `€${round(total)}`;
 }
 
+function setHiddenInput(cart) {
+    let eCart = document.getElementById("product_ids");
+    eCart.value = cart;
+}
+
 function addToCart(id) {
     let cart = getLocalStorage("cart");
 
@@ -135,6 +140,7 @@ function handleButtonColor() {
 
 async function renderCartItems() {
     let cart = getLocalStorage("cart");
+    setHiddenInput(cart);
 
     const eTarget = document.getElementById("cart-items");
     eTarget.innerHTML = "";

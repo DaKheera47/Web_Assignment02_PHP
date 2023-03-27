@@ -123,7 +123,7 @@ require_once "../components/connection.component.php";
 
                             <ul class="py-2" aria-labelledby="user-menu-button">
                                 <li>
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                    <a href="../pages/orderHistory.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                         Order History
                                     </a>
                                 </li>

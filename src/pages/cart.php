@@ -1,11 +1,37 @@
 <?php
 $tab_title = "Welcome to UCLan Student Shop - Home Page";
 require_once "../components/pageTop.component.php";
+
+if (isset($_SESSION["isCheckoutSuccess"]) && $_SESSION["isCheckoutSuccess"] == true) {
+    echo '
+<div class="mt-10 children:my-3">
+    <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+        Your order has been placed successfully!
+    </div>
+</div>';
+    // unset session variable
+    unset($_SESSION["isCheckoutSuccess"]);
+
+    // empty the cart in local storage
+    echo '
+<script>
+    localStorage.removeItem("cart");
+</script>';
+} else if (isset($_SESSION["isCheckoutSuccess"]) && $_SESSION["isCheckoutSuccess"] == false) {
+    echo '
+<div class="mt-10 children:my-3">
+    <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+        There was an error placing your order. Please try again.
+    </div>
+</div>';
+    // unset session variable
+    unset($_SESSION["isCheckoutSuccess"]);
+}
+
 ?>
 
 <div class="mt-10 children:my-3">
-    <?php
-    if (isset($_SESSION["isLoggedIn"]) && $_SESSION["isLoggedIn"] == true && isset($_SESSION["user_full_name"])) { ?>
+    <?php if (isset($_SESSION["isLoggedIn"]) && $_SESSION["isLoggedIn"] == true && isset($_SESSION["user_full_name"])) { ?>
         <div class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
             Welcome back, <span class="text-uclan-red dark:text-uclan-yellow">
                 <?php echo $_SESSION["user_full_name"] ?>
@@ -68,9 +94,13 @@ require_once "../components/pageTop.component.php";
                         </p>
                     </div>
 
-                    <button type="submit" class="w-full py-5 text-base leading-none text-white bg-gray-800 border border-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 dark:hover:bg-gray-700">
-                        Checkout
-                    </button>
+                    <form action="../actions/createOrder.php" method="post">
+                        <input type="hidden" name="product_ids" id="product_ids">
+
+                        <button type="submit" class="w-full py-5 text-base leading-none text-white bg-gray-800 border border-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 dark:hover:bg-gray-700">
+                            Checkout
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
