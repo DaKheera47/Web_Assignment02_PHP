@@ -3,3 +3,4 @@
 <script src="../js/round.js"></script>
 <script src="../js/glanceCart.js"></script>
 <script src="../js/usePHP.js"></script>
+<script src="../js/animations.js"></script>

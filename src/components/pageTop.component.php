@@ -12,6 +12,7 @@ require_once "../components/connection.component.php";
     <link rel="stylesheet" href="../../output.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $tab_title; ?></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <?php require_once '../components/scripts.component.php'; ?>
 
     <script>
@@ -62,7 +63,7 @@ require_once "../components/connection.component.php";
 </head>
 
 <body class="pt-16 dark:bg-gray-900 dark:text-white md:pt-24">
-    <nav class="fixed top-0 left-0 w-full bg-uclan-red text-white border-gray-200 px-[5vw] py-2.5 rounded">
+    <nav class="fixed z-[500] top-0 left-0 w-full bg-uclan-red text-white border-gray-200 px-[5vw] py-2.5 rounded">
         <div class="container flex flex-wrap items-center justify-between max-w-screen-xl mx-auto">
             <a href="./index.php" class="flex items-center">
                 <img src="../../public/images/uclanLogo.jpg" class="h-6 mr-3 rounded-full sm:h-9" alt="UCLan Logo">

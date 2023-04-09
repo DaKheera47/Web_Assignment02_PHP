@@ -1,4 +1,4 @@
-<footer class="text-white px-[5vw] bg-uclan-blue dark:bg-gray-800">
+<footer class="text-white px-[5vw] bg-uclan-blue dark:bg-gray-800 js-show-on-scroll">
     <div class="grid max-w-screen-xl grid-cols-1 gap-8 py-16 mx-auto md:grid-cols-3 ">
         <div>
             <h2 class="mb-6 text-lg font-semibold uppercase">
