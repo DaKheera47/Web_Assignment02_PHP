@@ -2,6 +2,13 @@
 $tab_title = "Welcome to UCLan Student Shop - Home Page";
 require_once "../components/pageTop.component.php";
 
+// check if the user is logged in
+if (!isset($_SESSION["isLoggedIn"]) || $_SESSION["isLoggedIn"] == false) {
+    // redirect to login page
+    echo "<script>window.location.href = '../pages/login.php';</script>";
+    exit();
+}
+
 if (isset($_SESSION["isCheckoutSuccess"]) && $_SESSION["isCheckoutSuccess"] == true) {
     echo '
 <div class="mt-10 children:my-3">

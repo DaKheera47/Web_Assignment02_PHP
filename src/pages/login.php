@@ -12,11 +12,12 @@ if (isset($_POST["user_pass"])) {
     $_SESSION["user_pass"] = htmlspecialchars($_POST["user_pass"]);
 }
 
-// // redirect to products page if user is logged in
-// if (isset($_SESSION["user_email"]) && isset($_SESSION["user_pass"])) {
-//     header("Location: products.php");
-//     exit();
-// }
+// check if the user is logged in
+if (isset($_SESSION["isLoggedIn"]) && $_SESSION["isLoggedIn"] == true) {
+    // redirect to products page
+    echo "<script>window.location.href = 'index.php';</script>";
+    exit();
+}
 
 // if email as password arent set, skip the rest of the code
 if (isset($_SESSION["user_email"]) && isset($_SESSION["user_pass"])) {
@@ -63,7 +64,7 @@ if (isset($_SESSION["user_email"]) && isset($_SESSION["user_pass"])) {
     <div id="toast-simple" class="flex items-center w-full max-w-md p-4 mx-auto my-6 space-x-4 text-gray-500 bg-white divide-x divide-gray-200 rounded-lg shadow js-show-on-scroll dark:text-gray-200 dark:divide-gray-700 space-x dark:bg-gray-700" role="alert">
         <!-- warning icon -->
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-500">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" stroke="currentColor" >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" stroke="currentColor">
         </svg>
 
         <div class="pl-4 text-sm font-normal"><?php echo $_SESSION["error"] ?></div>

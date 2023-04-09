@@ -4,6 +4,14 @@ require_once("../components/pageTop.component.php");
 ?>
 
 <?php
+
+// check if the user is logged in
+if (isset($_SESSION["isLoggedIn"]) && $_SESSION["isLoggedIn"] == true) {
+    // redirect to products page
+    echo "<script>window.location.href = 'index.php';</script>";
+    exit();
+}
+
 if (isset($_POST["user_email"])) {
     $_SESSION["user_email"] = htmlspecialchars($_POST["user_email"]);
 }
