@@ -65,6 +65,17 @@ if ($result->num_rows > 0) {
         <?php
         require_once '../components/productComment.component.php';
 
+        // if there are no comments
+        if (count($comments) == 0) {
+            echo "<div class='w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600'>
+                    <div class='px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800'>
+                        <h3 class='text-sm text-gray-900 dark:text-white'>
+                        No comments yet. Be the first one to write about " . $product['product_title'] . "!
+                        </h3>
+                    </div>
+                </div>";
+        }
+
         // flip comments array so that the most recent comment is at the top
         $comments = array_reverse($comments);
         for ($i = 0; $i < count($comments); $i++) {
