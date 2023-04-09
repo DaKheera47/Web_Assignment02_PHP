@@ -25,13 +25,13 @@ function createCard($row, $conn)
 ?>
 
     <div data-card="true" data-selector="<?php echo $type ?>" id="<?php echo $id ?>" class="w-full max-w-sm mb-8 bg-white border border-gray-200 rounded-lg shadow h-fit productCard dark:bg-gray-800 dark:border-none">
-        <img class="p-8 rounded-t-lg" src="/~ssarfaraz/public/<?php echo $image ?>" alt="<?php echo ucfirst(strtolower($desc)) ?>" />
+        <img class="p-8 rounded-t-lg" src="/~ssarfaraz/public/<?php echo $image ?>" alt="<?php echo ucfirst(strtolower($desc)) ?>">
 
         <div class="px-5 pb-5">
             <form action="viewProduct.php">
                 <input type="hidden" name="id" value="<?php echo $id ?>">
-                <button type="submit">
-                    <h6 class="text-xl font-semibold tracking-tight text-gray-900 link dark:text-white" id="productTitle<?php echo $id ?>"><?php echo $title ?></h6>
+                <button type="submit" id="productTitle<?php echo $id ?>" class="text-xl font-semibold tracking-tight text-gray-900 link dark:text-white">
+                    <?php echo $title ?>
                 </button>
             </form>
 
