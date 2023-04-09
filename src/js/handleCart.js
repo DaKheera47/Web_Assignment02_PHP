@@ -1,22 +1,3 @@
-// if (getLocalStorage("cart") == null) {
-//     document.getElementById("cartIcon").classList.add("hidden");
-// }
-
-// function addToCart(item) {
-//     let cart = getLocalStorage("cart");
-
-//     if (cart == null) {
-//         cart = [];
-//     }
-
-//     cart.push(item);
-
-//     let userUniqueCartItems = countDuplicateEntries(cart);
-
-//     setLocalStorage("cart", cart);
-//     setLocalStorage("formattedCart", userUniqueCartItems);
-// }
-
 function countDuplicateEntries(arr) {
     const counts = arr.reduce((acc, curr) => {
         const key = curr;
@@ -58,29 +39,45 @@ function calculateCheckoutValues(productData) {
             `item-count-${item.product_id}`
         );
 
-        // cast to int to avoid string concatenation
-        itemTotal += parseInt(
-            item.product_price * parseInt(eItemCount.textContent)
-        );
+        if (eItemCount) {
+            // cast to int to avoid string concatenation
+            itemTotal += parseInt(
+                item.product_price * parseInt(eItemCount.textContent)
+            );
+        }
     });
 
     let tax = itemTotal * taxPc;
     let shipping = itemTotal * shippingPc;
 
-    eItemTotal.innerHTML = `€${round(itemTotal)}`;
-    eTax.innerHTML = `€${round(tax)}`;
-    eShipping.innerHTML = `€${round(shipping)}`;
+    if (eItemTotal) {
+        eItemTotal.innerHTML = `€${round(itemTotal)}`;
+    }
+    if (eTax) {
+        eTax.innerHTML = `€${round(tax)}`;
+    }
+    if (eShipping) {
+        eShipping.innerHTML = `€${round(shipping)}`;
+    }
 
     let total = itemTotal + tax + shipping;
-    eTotal.innerHTML = `€${round(total)}`;
+    if (eTotal) {
+        eTotal.innerHTML = `€${round(total)}`;
+    }
 }
 
 function setHiddenInput(cart) {
     let eCart = document.getElementById("product_ids");
-    eCart.value = cart;
+    if (eCart) {
+        eCart.value = cart;
+    }
 }
 
-function addToCart(id) {
+async function addToCart(id) {
+    if (!await isLoggedIn()) {
+        return;
+    }
+
     let cart = getLocalStorage("cart");
 
     // If the cart is empty, set it to an empty array.
@@ -94,7 +91,11 @@ function addToCart(id) {
     handleButtonColor();
 }
 
-function handleRemoveItem(id) {
+async function handleRemoveItem(id) {
+    if (!await isLoggedIn()) {
+        return;
+    }
+
     let cart = getLocalStorage("cart");
 
     // If the cart is empty, set it to an empty array.
@@ -131,8 +132,8 @@ function handleButtonColor() {
                 const eButton = product.getElementsByTagName("button")[1];
 
                 // add the class
-                eButton.classList.add("bg-green-500");
-                eButton.classList.add("hover:bg-green-600");
+                eButton.classList.add("!bg-green-500");
+                eButton.classList.add("hover:!bg-green-600");
             }
         });
     });
@@ -143,7 +144,9 @@ async function renderCartItems() {
     setHiddenInput(cart);
 
     const eTarget = document.getElementById("cart-items");
-    eTarget.innerHTML = "";
+    if (eTarget) {
+        eTarget.innerHTML = "";
+    }
 
     if (cart === null || cart.length === 0) {
         eTarget.innerHTML = `
@@ -184,7 +187,9 @@ async function renderCartItems() {
         products.push(JSON.parse(output));
 
         const eTarget = document.getElementById("cart-items");
-        eTarget.innerHTML = "";
+        if (eTarget) {
+            eTarget.innerHTML = "";
+        }
 
         // for each item in cart
         products.forEach((cartItem) => {
