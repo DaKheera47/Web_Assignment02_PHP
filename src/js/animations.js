@@ -1,7 +1,6 @@
 $(document).ready(function () {
     // Get all the elements you want to show on scroll
     const targets = document.querySelectorAll(".js-show-on-scroll");
-    console.log("🚀 ~ file: animations.js:5 ~ targets:", targets);
 
     // Callback for IntersectionObserver
     const callback = function (entries) {
@@ -22,8 +21,6 @@ $(document).ready(function () {
 
     // Loop through each of the target
     targets.forEach(function (target) {
-        console.log(target);
-
         // Hide the element
         target.classList.add("opacity-0");
 
