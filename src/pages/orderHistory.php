@@ -87,6 +87,4 @@ require_once '../components/productCard.component.php';
     <?php } ?>
 </div>
 
-<script src="../js/handleCart.js"></script>
-<script src="../js/handleProductCard.js"></script>
 <?php require_once "../components/pageBottom.component.php"; ?>

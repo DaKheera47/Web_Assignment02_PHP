@@ -114,6 +114,4 @@ if (isset($_SESSION["isCheckoutSuccess"]) && $_SESSION["isCheckoutSuccess"] == t
     </div>
 </div>
 
-<script src="../js/handleCart.js"></script>
-
 <?php require_once "../components/pageBottom.component.php"; ?>

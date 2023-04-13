@@ -143,6 +143,4 @@ if ($result->num_rows > 0) { ?>
 
 <?php } ?>
 
-<script src="../js/handleCart.js"></script>
-<script src="../js/handleProductCard.js"></script>
 <?php require_once "../components/pageBottom.component.php"; ?>

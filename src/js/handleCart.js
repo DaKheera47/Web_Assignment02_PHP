@@ -228,9 +228,6 @@ async function renderCartItems() {
                     </p>
 
                     <div class="flex items-center justify-between pt-5">
-                        <p class="text-sm leading-3 hover:underline hover:underline-offset-4 text-gray-800 dark:text-white cursor-pointer">
-                            Add to favorites
-                        </p>
                         <p onclick='handleRemoveItem(${
                             item.product_id
                         })' class="text-sm leading-3 hover:underline hover:underline-offset-4 text-red-500 pl-5 cursor-pointer">
