@@ -130,6 +130,12 @@ require_once "../components/connection.component.php";
                                 </li>
 
                                 <li>
+                                    <a href="../pages/settings.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                        Settings
+                                    </a>
+                                </li>
+
+                                <li>
                                     <form action="./logout.php" method="POST" class="w-full">
                                         <input type="hidden" name="action" value="logout">
                                         <button type="submit" class="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
