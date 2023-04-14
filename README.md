@@ -4,6 +4,8 @@ This project serves as a simple example of a PHP application for the UCLan Stude
 
 The database is a MySQL database with tables like tbl_products, tbl_users, tbl_reviews, tbl_offers, and tbl_orders. The database is stored on the server and is accessible via phpMyAdmin.
 
+# View the live demo [here](https://vesta.uclan.ac.uk/~ssarfaraz/src/pages/index.php)
+
 ## Features
 
 1. Users can browse products, add them to a cart, and view the cart.
