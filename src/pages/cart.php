@@ -48,9 +48,10 @@ if (isset($_SESSION["isCheckoutSuccess"]) && $_SESSION["isCheckoutSuccess"] == t
 
     <div class="grid grid-cols-1 grid-rows-1 md:grid-cols-3" id="cart">
         <div class="w-full h-full col-span-2 px-4 py-4 bg-white rounded-lg lg:px-8 lg:py-14 md:px-6 md:py-8 dark:bg-gray-800">
-            <p class="pt-3 mb-4 text-3xl font-bold leading-10 text-gray-800 lg:text-4xl dark:text-white">
-                Your Cart
-            </p>
+            <div class="flex items-end justify-between w-full pt-3 mb-4 text-3xl font-bold leading-10 text-gray-800 lg:text-4xl dark:text-white">
+                <span>Your Cart</span>
+                <span onclick="clearCart()" class="text-sm cursor-pointer hover:underline h-fit text-uclan-red">Clear</span>
+            </div>
 
             <div id="cart-items" class="overflow-y-scroll h-[90%] scrollbar scrollbar-thumb-uclan-red scrollbar-thumb-rounded scrollbar-track-gray-100 dark:scrollbar-track-gray-900">
                 <!-- populated from js -->
