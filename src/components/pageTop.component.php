@@ -64,7 +64,7 @@ require_once "../components/connection.component.php";
 
 <body class="pt-16 dark:bg-gray-900 dark:text-white md:pt-24">
     <nav class="fixed z-[500] top-0 left-0 w-full bg-uclan-red text-white border-gray-200 px-[5vw] py-2.5 rounded">
-        <div class="container flex flex-wrap items-center justify-between max-w-screen-xl mx-auto">
+        <div class="container flex flex-wrap items-center justify-center max-w-screen-xl mx-auto space-y-2 sm:space-y-0 sm:justify-between">
             <a href="./index.php" class="flex items-center">
                 <img src="../../public/images/uclanLogo.jpg" class="h-6 mr-3 rounded-full sm:h-9" alt="UCLan Logo">
 
@@ -188,4 +188,4 @@ require_once "../components/connection.component.php";
         </div>
     </nav>
 
-    <main class="px-[5vw] xl:px-0 max-w-screen-xl mx-auto">
+    <main class="px-[5vw] py-14 md:py-0 xl:px-0 max-w-screen-xl mx-auto">

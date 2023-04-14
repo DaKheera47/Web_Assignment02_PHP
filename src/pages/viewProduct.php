@@ -110,7 +110,7 @@ foreach ($ratings as $rating) {
 
 ?>
 
-<div class="grid grid-cols-1 pt-12 md:pt-0 md:grid-cols-2 children:mx-3">
+<div class="grid grid-cols-1 md:grid-cols-2 children:mx-3">
     <div class="mt-3">
         <?php
         require_once '../components/productCard.component.php';
@@ -118,37 +118,44 @@ foreach ($ratings as $rating) {
         ?>
 
         <div class="mb-8">
-            <div class="flex items-center justify-center mb-3 md:justify-start">
-                <?php
-                // display the average rating, rounded to the top integer
-                for ($i = 0; $i < ceil($avgRating); $i++) { ?>
-                    <svg aria-hidden="true" class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <title>Star at postiion <?php echo $i + 1 ?></title>
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                    </svg>
-                <?php } ?>
-                <p class="ml-2 text-sm font-medium text-center text-gray-900 md:text-left dark:text-white"><?php echo round($avgRating, 1) ?> out of 5</p>
-            </div>
+            <?php if ($ratingCount["count"] > 0) { ?>
+                <div class="flex items-center justify-center mb-3 md:justify-start">
+                    <?php
+                    // display the average rating, rounded to the top integer
+                    for ($i = 0; $i < ceil($avgRating); $i++) { ?>
+                        <svg aria-hidden="true" class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <title>Star at postiion <?php echo $i + 1 ?></title>
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                    <?php } ?>
 
-            <p class="text-sm font-medium text-center text-gray-500 md:text-left dark:text-gray-400">
-                <?php echo $ratingCount["count"] ?> global rating<?php if ($ratingCount["count"] > 1)  echo "s"; ?>
-            </p>
-
-            <?php for ($i = 5; $i >= 1; $i--) : ?>
-                <div class="flex items-center justify-center mt-4 md:justify-start">
-                    <span class="text-sm font-medium text-blue-600 dark:text-blue-500"><?php echo $i; ?> star</span>
-                    <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                        <div class="h-5 bg-yellow-400 rounded" style="width: <?php echo isset($ratingPercentages[$i]) ? $ratingPercentages[$i] : 0; ?>%"></div>
-                    </div>
-                    <span class="text-sm font-medium text-blue-600 dark:text-blue-500"><?php echo isset($ratingPercentages[$i]) ? $ratingPercentages[$i] . '%' : '0%'; ?></span>
+                    <p class="ml-2 text-sm font-medium text-center text-gray-900 md:text-left dark:text-white">
+                        <?php echo round($avgRating, 1) ?> out of 5
+                    </p>
                 </div>
-            <?php endfor; ?>
 
+                <p class="text-sm font-medium text-center text-gray-500 md:text-left dark:text-gray-400">
+                    <?php echo $ratingCount["count"] ?> global rating<?php if ($ratingCount["count"] > 1)  echo "s"; ?>
+                </p>
+
+                <?php for ($i = 5; $i >= 1; $i--) : ?>
+                    <div class="flex items-center justify-center mt-4 md:justify-start">
+                        <span class="text-sm font-medium text-blue-600 dark:text-blue-500"><?php echo $i; ?> star</span>
+                        <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                            <div class="h-5 bg-yellow-400 rounded" style="width: <?php echo isset($ratingPercentages[$i]) ? $ratingPercentages[$i] : 0; ?>%"></div>
+                        </div>
+                        <span class="text-sm font-medium text-blue-600 dark:text-blue-500"><?php echo isset($ratingPercentages[$i]) ? $ratingPercentages[$i] . '%' : '0%'; ?></span>
+                    </div>
+                <?php endfor; ?>
+            <?php } else { ?>
+                <p class="text-sm font-medium text-center text-gray-500 md:text-left dark:text-gray-400">
+                    No ratings yet. Be the first one to rate this product!
+                </p>
+            <?php } ?>
         </div>
-
     </div>
 
-    <div>
+    <div class="mt-3">
         <?php
         require_once '../components/productComment.component.php';
 

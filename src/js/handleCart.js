@@ -74,7 +74,7 @@ function setHiddenInput(cart) {
 }
 
 async function addToCart(id) {
-    if (!await isLoggedIn()) {
+    if (!(await isLoggedIn())) {
         return;
     }
 
@@ -92,7 +92,7 @@ async function addToCart(id) {
 }
 
 async function handleRemoveItem(id) {
-    if (!await isLoggedIn()) {
+    if (!(await isLoggedIn())) {
         return;
     }
 
@@ -249,5 +249,7 @@ async function renderCartItems() {
     });
 }
 
-renderCartItems();
-handleButtonColor();
+$(document).ready(() => {
+    handleButtonColor();
+    renderCartItems();
+});

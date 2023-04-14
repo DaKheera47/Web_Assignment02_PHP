@@ -44,46 +44,52 @@ for ($i = 0; $i < count($orders); $i++) {
 require_once '../components/productCard.component.php';
 ?>
 
-<div class="pt-12">
+<div>
     <h1 class="heading">Order History</h1>
 
-    <p class="mt-4">
-        Here is the order history for <?php echo $_SESSION["user_full_name"] ?>
-    </p>
+    <?php if (count($orders) == 0) { ?>
+        <p class="mt-4">
+            You have not made any orders yet.
+        </p>
+    <?php } else { ?>
 
-    <?php
-    // loop through orders
-    for ($i = 0; $i < count($orders); $i++) { ?>
-        <div class="container px-5 py-24 mx-auto">
-            <div class="flex flex-col">
-                <div class="h-1 overflow-hidden bg-gray-800 rounded">
-                    <div class="w-24 h-full bg-yellow-500"></div>
+        <p class="mt-4">
+            Here is the order history for <?php echo $_SESSION["user_full_name"] ?>
+        </p>
+
+        <?php // loop through orders
+        for ($i = 0; $i < count($orders); $i++) { ?>
+            <div class="container px-5 py-24 mx-auto">
+                <div class="flex flex-col">
+                    <div class="h-1 overflow-hidden bg-gray-800 rounded">
+                        <div class="w-24 h-full bg-yellow-500"></div>
+                    </div>
+
+                    <div class="flex flex-col flex-wrap py-6 mb-12 sm:flex-row">
+                        <h1 class="mb-2 text-2xl font-medium sm:w-2/5 title-font sm:mb-0">
+                            #<?php echo date(strtotime($orders[$i]["order_date"]));
+                                echo $orders[$i]["order_id"]; ?>
+                        </h1>
+
+                        <p class="pl-0 text-base leading-relaxed sm:w-3/5 sm:pl-10">
+                            <!-- https://stackoverflow.com/a/19152398 -->
+                            <!-- https://www.php.net/manual/en/datetime.format.php -->
+                            Ordered at <?php echo date("g i a \o\\n jS F, Y", strtotime($orders[$i]["order_date"]))  ?>
+                        </p>
+                    </div>
                 </div>
 
-                <div class="flex flex-col flex-wrap py-6 mb-12 sm:flex-row">
-                    <h1 class="mb-2 text-2xl font-medium sm:w-2/5 title-font sm:mb-0">
-                        #<?php echo date(strtotime($orders[$i]["order_date"]));
-                            echo $orders[$i]["order_id"]; ?>
-                    </h1>
-
-                    <p class="pl-0 text-base leading-relaxed sm:w-3/5 sm:pl-10">
-                        <!-- https://stackoverflow.com/a/19152398 -->
-                        <!-- https://www.php.net/manual/en/datetime.format.php -->
-                        Ordered at <?php echo date("g i a \o\\n jS F, Y", strtotime($orders[$i]["order_date"]))  ?>
-                    </p>
+                <div class="flex flex-wrap gap-5">
+                    <?php
+                    // print all products
+                    for ($j = 0; $j < count($orders[$i]["products"]); $j++) {
+                        $product = $orders[$i]["products"][$j];
+                        createCard($product, $conn);
+                    }
+                    ?>
                 </div>
             </div>
-
-            <div class="flex flex-wrap gap-5">
-                <?php
-                // print all products
-                for ($j = 0; $j < count($orders[$i]["products"]); $j++) {
-                    $product = $orders[$i]["products"][$j];
-                    createCard($product, $conn);
-                }
-                ?>
-            </div>
-        </div>
+        <?php } ?>
     <?php } ?>
 </div>
 
