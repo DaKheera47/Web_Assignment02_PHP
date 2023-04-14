@@ -1,6 +1,10 @@
 <?php
 function createCard($row, $conn)
 {
+    if (!$row) {
+        return;
+    }
+
     // get the average rating of the product from the product_rating column in the tbl_products table
     $sql = "SELECT AVG(review_rating) AS avg_rating FROM tbl_reviews WHERE product_id = ?";
     $stmt = $conn->prepare($sql);
